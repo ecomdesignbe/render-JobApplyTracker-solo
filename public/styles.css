@@ -22,9 +22,9 @@ body {
 /**************************/
 header { background-color: #bebebe; padding-top: 15px; padding-bottom: 15px;}
 
-main { margin-top: 45px; margin-bottom: 50px; }
+main { margin-top: 45px; margin-bottom: 100px; }
 
-footer { text-align: center;  background-color: #bebebe; padding-top: 15px; padding-bottom: 15px;}
+footer {  text-align: center;  background-color: #bebebe; padding-top: 15px; padding-bottom: 15px;}
 
 section { margin-bottom: 95px; }
 
