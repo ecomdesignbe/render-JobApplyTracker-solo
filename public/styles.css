@@ -1,0 +1,110 @@
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+
+* {
+    box-sizing: border-box!important; 
+}
+
+body {
+    font-family: "Inter", sans-serif;
+    color: #1E1E1E;
+    background-color: #dedede!important;
+}
+
+.error {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+/**************************/
+/** MAIN
+/**************************/
+header { background-color: #bebebe; padding-top: 15px; padding-bottom: 15px;}
+
+main { margin-top: 45px; margin-bottom: 50px; }
+
+footer { text-align: center;  background-color: #bebebe; padding-top: 15px; padding-bottom: 15px;}
+
+section { margin-bottom: 95px; }
+
+.container { max-width: 795px;}
+
+.greenyellow { color: greenyellow; }
+
+.form-control:focus {
+    border-color: #dc3545!important;
+    box-shadow:  0 0 0 .25rem rgba(190, 190, 190, .25)!important;
+}
+
+h2 {
+    font-weight: bolder!important;
+}
+
+select {
+    overflow-y: auto;
+}
+
+.card {
+    padding: 10px;
+    
+}
+
+/**************************/
+/** NAVBAR
+/**************************/
+
+.navbar {
+    text-transform: uppercase;
+}
+
+nav .navbar-nav li a{
+    color: #1E1E1E !important;
+    font-weight: 500;
+}
+
+nav .navbar-nav li a:hover{
+    color: #fff !important;
+}
+
+a.nav-link.active {
+    color: #fff !important;
+}
+
+.navbar-brand {
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(217, 217, 217, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar .navbar-toggler[aria-expanded="true"] {
+    color: #bebebe!important;
+}
+
+.navbar .navbar-toggler:focus{
+    color: #bebebe;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #bebebe !important;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #bebebe !important;
+}
+
+/**************************/
+/** MAIN FORM
+/**************************/
+
+main form {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+

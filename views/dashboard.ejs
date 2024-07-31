@@ -1,0 +1,129 @@
+<%- include('partials/header') -%>
+    
+    <main>
+        <div class="container">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/login">Login</a></li>
+                        <li class="breadcrumb-item"><a href="/profile">My profile</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mt-3 mb-3 text-center">
+                <h2>Dashboard</h2>
+            </div>
+            <div class="mt-3 mb-5">
+                <a href="/createJob">Create a job</a>
+            </div>
+            <div class="row hidden-md-up mb-4 mt-4">
+                <div class="col-2">
+                    <label for="inlineFormSelectPref">Filter by :</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="1">Status</option>
+                        <option value="2">Date</option>
+                    </select>
+                </div>
+                <div class="col-2">
+                    <label for="inlineFormSelectPref">Order</label>
+                    <select class="form-select" id="inlineFormSelectPref">
+                        <option selected>Choose...</option>
+                        <option value="1">Asc</option>
+                        <option value="2">Desc.</option>
+                    </select>
+                </div>
+            </div>            
+            <div class="row hidden-md-up mb-4 mt-4">
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-danger">Negative</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-warning">Interested</button>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-primary">CV sent</button>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-danger">Negative</button>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-warning">Interested</button>
+                        </div>
+                    </div>
+                </div>  
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-danger">Negative</button>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+
+                            <button type="button" class="btn btn-primary">CV sent</button>
+                        </div>
+                    </div>
+                </div> 
+                <div class="col-md-3 mb-4">
+                    <div class="card">
+                        <div class="card-block">
+                            <h4 class="card-title">Frontend Developer</h4>
+                            <h6 class="card-text p-y-1 mb-4">BecodeAgency</h6>
+                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>
+                            <button type="button" class="btn btn-success">Interview</a></button>
+                        </div>
+                    </div>
+                </div>                
+            </div>       
+        </div>        
+    </main>
+    <%- include('partials/footer') -%>

@@ -1,0 +1,67 @@
+<%- include('partials/header') -%>
+
+    
+    <main>
+        <div class="container">
+            <div class="col-12">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/login">Login</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">My profile</li>
+                    </ol>
+                </nav>
+            </div>
+            <div class="mt-3 mb-5 text-center">
+                <h2>My profile</h2>
+            </div> 
+            <div class="mb-3 mt-3">
+                <div class="row justify-content-center">
+                    <div class="col-md-4 text-center">
+                        <img src="https://placehold.co/121x150/000000/FFF" class="rounded" alt="...">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <div class="row justify-content-left">
+                                <div class="col-md-3">
+                                    <p class="card-text">Full name :</p>
+                                </div>
+                                <div class="col-md-9 mb-2">
+                                    <div class="card-body">
+                                        <p class="card-text">John Doe</p>          
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="row justify-content-left">
+                                <div class="col-md-3">
+                                    <p class="card-text">Email :</p>
+                                </div>
+                                <div class="col-md-9 mb-2">
+                                    <div class="card-body">
+                                        <p class="card-text">john@doe.com</p>           
+                                    </div>                                    
+                                </div>
+                            </div>
+                            <div class="row justify-content-left">
+                                <div class="col-md-3">
+                                    <p class="card-text">GitHub :</p>
+                                </div>
+                                <div class="col-md-9 mb-4">
+                                    <div class="card-body">
+                                        <p class="card-text">https://www.github.com/DoeJohn</p>            
+                                    </div>                                    
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success">Download CV</button>
+                        <button type="button" class="btn btn-secondary">Upload new CV</button>
+                        <button type="button" class="btn btn-danger">Change password</button>
+                        
+                    </div>
+                </div>
+            
+            </div>           
+            
+        </div>        
+    </main>
+
+    <%- include('partials/footer') -%>

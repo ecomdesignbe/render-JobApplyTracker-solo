@@ -1,0 +1,28 @@
+{
+  "name": "render-jobapplytracker",
+  "version": "1.0.0",
+  "description": "JobApply Tracker - Fullstack group exercise",
+  "main": "app.js",
+  "scripts": {
+    "test": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ecomdesignbe/render-JobApplyTracker.git"
+  },
+  "author": "Ecomdesign",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ecomdesignbe/render-JobApplyTracker/issues"
+  },
+  "homepage": "https://github.com/ecomdesignbe/render-JobApplyTracker#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.1",
+    "validator": "^13.12.0"
+  }
+}
