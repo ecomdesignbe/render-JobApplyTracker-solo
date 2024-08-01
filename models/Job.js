@@ -1,41 +1,47 @@
 const mongoose = require('mongoose')
+const { isEmail } = require('validator')
 
 const jobSchema = new mongoose.Schema({
-    firstname: { 
+    jobtitle: { 
         type: String,
-        required: [true, 'Please enter your firstname']
+        required: [true, 'Please enter a jobtitle']
     },
-    lastname: { 
-        type: String, 
-        required: [true, 'Please enter your lastname']
+    website: { 
+        type: String,        
+        required: [true, 'Please enter a website']
     },
-    email: {
+    employersName: { 
         type: String,
-        required: [true, 'Please enter an email'],
-        unique: true,
+        required: [true, 'Please enter an employers name']
+    },
+    employersEmail: {
+        type: String,
+        required: [true, 'Please enter an employers email'],        
         lowercase: true,
         validate: [isEmail, 'Please enter a valid email']
     },
-    github: { 
-        type: String, 
-        default : 'none' 
+    employersPhone: {
+        type: String
     },
-    profilePicture: { 
-        type: String, 
-        default : 'none' 
+    employersAddress: {
+        type: String
     },
-    cvDocuments: { 
-        type: String, 
-        default : 'none' 
-    },  
-    password: {
-        type: String,
-        required: [true, 'Please enter a password'],
-        minlength: [6, 'Minimum password length is 6 characters'],
-    }
+    origin: {
+        type: [String],
+        enum: ['Candidature spontanée', 'Job offer.'],
+        required : [true, 'Please choose an origin']
+    },
+    status: {
+        type: [String],
+        enum: ['Interested', 'CV sent', 'Negative', 'Interview'],
+        required : [true, 'Please choose an status'] 
+    },
+    comments: {
+        type: String
+    },
 })
 
 
-const User = mongoose.model('user', userSchema)
+const Job = mongoose.model('job', jobSchema)
 
-module.exports = User
+module.exports = Job

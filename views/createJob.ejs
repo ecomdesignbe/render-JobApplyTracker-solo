@@ -19,73 +19,77 @@
                 <a class="btn btn-primary" href="/dashboard" role="button">Dashboard</a>
                 <a class="btn btn-danger" href="/logout" role="button">Log out</a>
             </div>             
-            <form action="/createJob">
+            <form action="/createJob" novalidate>
                 <div class="col mb-3">
-                    <label for="jobTitle" class="form-label">Job title</label>                        
-                    <input type="text" class="form-control" name="jobTitle" aria-label="Job title" required>
+                    <label for="jobtitle" class="form-label">Job title</label>                        
+                    <input type="text" class="form-control" name="jobtitle"  id="jobtitle" aria-label="jobtitle" required>
                     <div class="jobtitle error"></div>
                 </div>
                 
                 <div class="col mb-3">
                     <label for="website" class="form-label">Website</label>                        
-                    <input type="text" class="form-control" aria-label="Website" name="website" required>
+                    <input type="text" class="form-control" aria-label="website" name="website"  id="website" required>
                     <div class="website error"></div>                    
                 </div>
                 
                 <div class="col mb-3">
                     <p><strong>Employer's contact</strong></p>
-                    <label for="employersContact" class="form-label">Name</label>                        
-                    <input type="text" class="form-control" name="employersContact" aria-label="employersContact" required>
-                    <div class="employersContact error"></div>
+                    <label for="employersName" class="form-label">Name</label>                        
+                    <input type="text" class="form-control" name="employersName" id="employersName" aria-label="employersName" required>
+                    <div class="employersName error"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="email" class="form-label">Email of contact</label>
-                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" required>
-                    <div class="email error"></div>
+                    <label for="employersEmail" class="form-label">Email of contact</label>
+                    <input type="email" class="form-control" name="employersEmail" id="employersEmail" aria-describedby="emailHelp" required>
+                    <div class="employersEmail error"></div>
                 </div>
 
                 <div class="mb-3">
-                    <label for="phone" class="form-label">Phone</label>
-                    <input type="text" name="phone" class="form-control">
+                    <label for="employersPhone" class="form-label">Phone</label>
+                    <input type="text" name="employersPhone" id="employersPhone" class="form-control">
                 </div>
                 
                 <div class="mb-4">
-                    <label for="adress" class="form-label">Adress</label>
-                    <input type="text" class="form-control" name="adress">
+                    <label for="employersAddress" class="form-label">Adress</label>
+                    <input type="text" class="form-control" name="employersAddress " id="employersAddress">
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-2 mb-3">
-                        <label for="form-select" class="form-label">Origin</label>
+                        <label for="origin" class="form-label">Origin</label>
                         
                     </div>
                     <div class="col mb-3">
-                        <select class="form-select" multiple aria-label="origin">
-                            <option value="1">Candidature spontanée</option>
-                            <option value="2">Job offer.</option>                            
+                        <select class="form-select" multiple aria-label="origin" id="origin" required>
+                            <option value="Candidature spontanée">Candidature spontanée</option>
+                            <option value="Job offer.">Job offer.</option>                            
                         </select>
                     </div>
+                    <div class="origin error"></div>
+
                 </div>
 
                 <div class="row mb-3">
                     <div class="col-md-2 mb-3">
-                        <label for="form-select" class="form-label">Status</label>
+                        <label for="status" class="form-label">Status</label>
                         
                     </div>
                     <div class="col mb-3">
-                        <select class="form-select" multiple aria-label="origin">
-                            <option value="1">Interested</option>
-                            <option value="2">CV sent</option>                            
-                            <option value="3">Negative</option>                            
-                            <option value="4">Interview</option>                            
+                        <select class="form-select" multiple aria-label="status" id="status" required>
+                            <option value="Interested">Interested</option>
+                            <option value="CV sent">CV sent</option>                            
+                            <option value="Negative">Negative</option>                            
+                            <option value="Interview">Interview</option>                            
                         </select>
                     </div>
+                    <div class="status error"></div>
+
                 </div>
 
                 <div class="mb-3">
-                    <label for="floatingTextarea">Comments</label>
-                    <textarea class="form-control mt-2" placeholder="Leave a comment here" name="Comments" id="comments"></textarea>
+                    <label for="comments">Comments</label>
+                    <textarea class="form-control mt-2" placeholder="Leave a comment here" name="comments" id="comments"></textarea>
                     
                 </div>
 
@@ -93,5 +97,76 @@
             </form>
         </div>        
     </main>
+
+    <script>
+        const form = document.querySelector('form')
+
+        const jobtitleError = document.querySelector('.jobtitle.error')
+        const websiteError = document.querySelector('.website.error')
+        const employersNameError = document.querySelector('.employersName.error')
+        const employersEmailError = document.querySelector('.employersEmail.error')
+
+        const originError = document.querySelector('.origin.error')
+        const statusError = document.querySelector('.status.error')
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault()
+
+            // reset errors
+            jobtitleError.textContent = ''
+            websiteError.textContent =  ''
+            employersNameError.textContent =  ''
+            employersEmailError.textContent =  ''
+            originError.textContent =  ''
+            statusError.textContent =  ''
+
+            // get the values
+            const jobtitle = form.jobtitle.value
+            const website = form.website.value
+            const employersName = form.employersName.value
+            const employersEmail = form.employersEmail.value
+            const employersPhone = form.employersPhone.value
+            const employersAddress = form.employersAddress.value
+            const origin = Array.from(form.origin.selectedOptions).map(option => option.value);
+            const status = Array.from(form.status.selectedOptions).map(option => option.value);
+            const comments = form.comments.value
+
+            try {
+                const res = await fetch('/createJob', {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        jobtitle, 
+                        website, 
+                        employersName, 
+                        employersEmail, 
+                        employersPhone, 
+                        employersAddress, 
+                        origin, 
+                        status, 
+                        comments 
+                    }),
+                    headers: { 'Content-type': 'application/json' }
+                })
+
+                const data = await res.json()
+                console.log(data)
+                if (data.errors) {
+                    jobtitleError.textContent = data.errors.jobtitle || ''
+                    websiteError.textContent = data.errors.website || ''
+                    employersNameError.textContent = data.errors.employersName || ''
+                    employersEmailError.textContent = data.errors.employersEmail || ''
+                    originError.textContent = data.errors.origin || ''
+                    statusError.textContent = data.errors.status || ''
+                }
+                if(data.job) {
+                    location.assign('/dashboard')
+                }
+                
+            } catch (err) {
+                console.log(err)
+            }
+        })
+
+    </script>
 
     <%- include('partials/footer') -%>
