@@ -38,9 +38,8 @@ const jobSchema = new mongoose.Schema({
     },
     comments: {
         type: String
-    },
+    }
 })
-
 
 const Job = mongoose.model('job', jobSchema)
 

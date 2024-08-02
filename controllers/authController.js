@@ -62,12 +62,12 @@ const jobHandleErrors = (err) => {
   // Check for validation errors
   if (err.message.includes('job validation failed')) {
     Object.values(err.errors).forEach(({ properties }) => {
-      errors[properties.path] = properties.message;
+      errors[properties.path] = properties.message
     })
   }
 
   return errors
-};
+}
 
 module.exports.register_get = (req, res) => {
   res.render('register')
@@ -126,11 +126,11 @@ module.exports.login_post = async (req, res) => {
   }  
 }
 
-
+/* FONCTIONNEL MAIS A REFAIRE OU PAS */
 module.exports.createJob_get = (req, res) => {
   res.render('createJob')
 }
-
+/* FONCTIONNEL MAIS A REFAIRE OU PAS */
 module.exports.createJob_post = async (req, res) => {
   const { 
     jobtitle,
@@ -142,7 +142,7 @@ module.exports.createJob_post = async (req, res) => {
     origin,           
     status,
     comments
-  } = req.body;
+  } = req.body
   
   try {
     const job = await Job.create({ 
@@ -155,18 +155,40 @@ module.exports.createJob_post = async (req, res) => {
       origin,          
       status,
       comments 
-    });
+    })
 
-    res.status(201).json({ job: job._id });
+    res.status(201).json({ job: job._id })
     
   } catch (err) {
-    console.log(err);
+    console.log(err)
 
-    const errors = jobHandleErrors(err);
-    res.status(400).json({ errors });
+    const errors = jobHandleErrors(err)
+    res.status(400).json({ errors })
   }
-};
+}
+/* PAS FONCTIONNEL
+module.exports.dashboard_get = async (req, res) => {
+  try {
+    const jobs = await Job.find({})
+    res.status(200).json(jobs)
+    
+  } catch (error) {
+    res.status(500).json({message : error.message})
+    
+  }
+}
 
+module.exports.viewJob_get = async(req, res) => {
+  try {
+    const {id} = req.params
+    const job = await Job.findById({id})
+    res.status(200).json(job)
+    
+  } catch (error) {
+    res.status(500).json({message : error.message})    
+  }
+}
+*/
 
 module.exports.logout_get = (req, res) => {
   res.cookie('jwt', '', { maxAge : 1 })
