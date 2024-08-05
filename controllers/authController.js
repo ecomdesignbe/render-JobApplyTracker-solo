@@ -190,7 +190,7 @@ module.exports.createJob_post = async (req, res) => {
 
 /************************************************************** */
 
-module.exports.viewJob_get = async (req, res) => {
+module.exports.viewJob_get = async (req, res, next) => {
   try {
     const { id } = req.params
     const data = await Job.findById(id)
@@ -199,7 +199,8 @@ module.exports.viewJob_get = async (req, res) => {
     }
     res.render('viewjob', { data }) 
   } catch (error) {
-    res.status(500).json({ message: error.message })
+    return next(err)
+    // res.status(500).json({ message: error.message })
   }
 }
 
