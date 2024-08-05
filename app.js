@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
@@ -13,6 +14,9 @@ app.use(cookieParser())
 
 // view engine
 app.set('view engine', 'ejs')
+
+// Set views directory
+app.set('views', path.join(__dirname, 'src/views')); // Ensure path matches your project structure
 
 
 // database connection
