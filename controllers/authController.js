@@ -51,6 +51,7 @@ const jobHandleErrors = (err) => {
   console.log(err.message, err.code)
   let errors = { 
     jobtitle: '', 
+    jobcompany: '', 
     website: '', 
     employersName: '', 
     employersEmail: '', 
@@ -79,10 +80,6 @@ module.exports.register_get = (req, res) => {
   res.render('register')
 }
 
-module.exports.login_get = (req, res) => {
-  res.render('login')
-}
-
 module.exports.register_post = async (req, res) => {
   const { 
     firstname,
@@ -93,7 +90,6 @@ module.exports.register_post = async (req, res) => {
     cvDocuments, 
     password 
   } = req.body
-  
   
   try {
     const user = await User.create({ 
@@ -115,6 +111,10 @@ module.exports.register_post = async (req, res) => {
     res.status(400).json({errors})
     
   }
+}
+
+module.exports.login_get = (req, res) => {
+  res.render('login')
 }
 
 module.exports.login_post = async (req, res) => {
@@ -201,6 +201,7 @@ module.exports.viewJob_get = async(req, res) => {
   }
 }
 
+/************************************************************** */
 
 module.exports.logout_get = (req, res) => {
   res.cookie('jwt', '', { maxAge : 1 })

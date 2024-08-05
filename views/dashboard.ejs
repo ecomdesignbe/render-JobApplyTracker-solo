@@ -46,8 +46,8 @@
                         <div class="card-block">
                             <h4 class="card-title"> <%= job.jobtitle %></h4>
                             <h6 class="card-text p-y-1 mb-4"><%= job.jobcompany %></h6>
-                            <a class="btn btn-light" href="/viewJob" role="button">See More</a>                           
-                            <button type="button" class="btn btn-danger" id="button"><%= job.status %></button>
+                            <a class="btn btn-secondary" href="/viewJob" role="button">See More</a>
+                            <button type="button" class="btn" id="button" value="<%= job.status %>"><%= job.status %></button>
                         </div>
                     </div>
                 </div>                
@@ -56,12 +56,19 @@
         </div>        
     </main>
     <script>
-        // tesssssssssssssssssst
-        const button = document.querySelector('#button')
-        if (button.contains === 'Interested') {
-            button.classList.remove('btn btn-primary')
-            button.classList.add('btn btn-primary')
-        }
-        </script>
+        let buttons = document.querySelectorAll('#button')
+        
+        buttons.forEach(button => {
+            if (button.value === 'Interested') {
+                button.classList.add('btn-warning')
+            } else if (button.value === 'CV sent') {
+                button.classList.add('btn-info')
+            } else if (button.value === 'Negative') {
+                button.classList.add('btn-danger')
+            } else if (button.value === 'Interview') {
+                button.classList.add('btn-success')
+            }
+        })
+    </script>
     
     <%- include('partials/footer') -%>
