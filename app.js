@@ -26,8 +26,8 @@ app.get('*', checkUser)
 app.get('/', (req, res) => res.render('login'))
 app.get('/profile',  requireAuth, (req, res) => res.render('profile'))
 app.get('/viewjob',   (req, res) => res.render('viewjob'))
-app.get('/createJob',  requireAuth, (req, res) => res.render('createJob'))
-app.get('/dashboard',  (req, res) => res.render('dashboard'))
+// app.get('/createJob',  requireAuth, (req, res) => res.render('createJob'))
+app.get('/dashboard',  requireAuth)
 app.get('/register',  (req, res) => res.render('register'))
 
 

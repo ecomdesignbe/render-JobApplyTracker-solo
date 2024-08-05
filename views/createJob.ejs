@@ -25,6 +25,15 @@
                     <input type="text" class="form-control" name="jobtitle"  id="jobtitle" aria-label="jobtitle" required>
                     <div class="jobtitle error"></div>
                 </div>
+
+                
+                <div class="col mb-3">
+                    <label for="jobcompany" class="form-label">Company</label>                        
+                    <input type="text" class="form-control" name="jobcompany"  id="jobcompany" aria-label="jobcompany" required>
+                    <div class="jobcompany error"></div>
+                </div>
+
+                
                 
                 <div class="col mb-3">
                     <label for="website" class="form-label">Website</label>                        
@@ -102,6 +111,7 @@
         const form = document.querySelector('form')
 
         const jobtitleError = document.querySelector('.jobtitle.error')
+        const jobcompanyError = document.querySelector('.jobcompany.error')
         const websiteError = document.querySelector('.website.error')
         const employersNameError = document.querySelector('.employersName.error')
         const employersEmailError = document.querySelector('.employersEmail.error')
@@ -114,6 +124,7 @@
 
             // reset errors
             jobtitleError.textContent = ''
+            jobcompanyError.textContent = ''
             websiteError.textContent =  ''
             employersNameError.textContent =  ''
             employersEmailError.textContent =  ''
@@ -122,6 +133,7 @@
 
             // get the values
             const jobtitle = form.jobtitle.value
+            const jobcompany = form.jobcompany.value
             const website = form.website.value
             const employersName = form.employersName.value
             const employersEmail = form.employersEmail.value
@@ -136,6 +148,7 @@
                     method: 'POST',
                     body: JSON.stringify({ 
                         jobtitle, 
+                        jobcompany, 
                         website, 
                         employersName, 
                         employersEmail, 
@@ -152,6 +165,7 @@
                 console.log(data)
                 if (data.errors) {
                     jobtitleError.textContent = data.errors.jobtitle || ''
+                    jobcompanyError.textContent = data.errors.jobcompany || ''
                     websiteError.textContent = data.errors.website || ''
                     employersNameError.textContent = data.errors.employersName || ''
                     employersEmailError.textContent = data.errors.employersEmail || ''

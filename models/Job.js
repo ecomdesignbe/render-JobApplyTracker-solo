@@ -6,6 +6,10 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please enter a jobtitle']
     },
+    jobcompany: { 
+        type: String,
+        required: [true, 'Please enter a company']
+    },
     website: { 
         type: String,        
         required: [true, 'Please enter a website']

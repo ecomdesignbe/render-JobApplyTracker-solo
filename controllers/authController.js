@@ -2,6 +2,7 @@ const User = require("../models/User")
 const Job = require("../models/Job")
 const jwt = require("jsonwebtoken")
 
+/********** GESTION ERREUR ****************  */
 // handle errors
 const handleErrors = (err) => {
   console.log(err.message, err.code)
@@ -45,6 +46,7 @@ const createToken = (id) => {
   })
 }
 
+
 const jobHandleErrors = (err) => {
   console.log(err.message, err.code)
   let errors = { 
@@ -68,6 +70,10 @@ const jobHandleErrors = (err) => {
 
   return errors
 }
+
+
+/*********************************************  */
+
 
 module.exports.register_get = (req, res) => {
   res.render('register')
@@ -126,14 +132,28 @@ module.exports.login_post = async (req, res) => {
   }  
 }
 
-/* FONCTIONNEL MAIS A REFAIRE OU PAS */
+/************************************************************** */
+
+module.exports.dashboard_get = async (req, res) => {
+  try {
+    const data = await Job.find({})
+    res.render('dashboard', { data }) 
+  } catch (error) {
+    console.log(error)
+    res.status(500).send("An error occurred") 
+  }
+}
+
+/************************************************************** */
+
 module.exports.createJob_get = (req, res) => {
   res.render('createJob')
 }
-/* FONCTIONNEL MAIS A REFAIRE OU PAS */
+
 module.exports.createJob_post = async (req, res) => {
   const { 
     jobtitle,
+    jobcompany,
     website,
     employersName, 
     employersEmail, 
@@ -147,6 +167,7 @@ module.exports.createJob_post = async (req, res) => {
   try {
     const job = await Job.create({ 
       jobtitle,
+      jobcompany,
       website,
       employersName, 
       employersEmail, 
@@ -166,17 +187,8 @@ module.exports.createJob_post = async (req, res) => {
     res.status(400).json({ errors })
   }
 }
-/* PAS FONCTIONNEL
-module.exports.dashboard_get = async (req, res) => {
-  try {
-    const jobs = await Job.find({})
-    res.status(200).json(jobs)
-    
-  } catch (error) {
-    res.status(500).json({message : error.message})
-    
-  }
-}
+
+/************************************************************** */
 
 module.exports.viewJob_get = async(req, res) => {
   try {
@@ -188,7 +200,7 @@ module.exports.viewJob_get = async(req, res) => {
     res.status(500).json({message : error.message})    
   }
 }
-*/
+
 
 module.exports.logout_get = (req, res) => {
   res.cookie('jwt', '', { maxAge : 1 })
