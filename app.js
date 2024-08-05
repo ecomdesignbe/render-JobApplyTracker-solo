@@ -13,6 +13,8 @@ app.use(cookieParser())
 
 // view engine
 app.set('view engine', 'ejs')
+app.set('views, __dirname + ./views')
+
 
 // database connection
 const dbURI = 'mongodb+srv://steve:nNhmx00iuu0mBqlA@cluster0.rkjriez.mongodb.net/jobapplytracker?retryWrites=true&w=majority&appName=Cluster0'
