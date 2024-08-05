@@ -13,7 +13,6 @@ app.use(cookieParser())
 
 // view engine
 app.set('view engine', 'ejs')
-app.set('views, __dirname + ./views')
 
 
 // database connection
