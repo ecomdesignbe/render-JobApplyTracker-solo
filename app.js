@@ -16,7 +16,7 @@ app.use(cookieParser())
 app.set('view engine', 'ejs')
 
 // Set views directory
-app.set('views', path.join(__dirname, 'src/views')); // Ensure path matches your project structure
+app.set('views', path.join(__dirname, 'views')); // Ensure path matches your project structure
 
 
 // database connection
