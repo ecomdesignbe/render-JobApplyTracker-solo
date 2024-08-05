@@ -189,7 +189,7 @@ module.exports.createJob_post = async (req, res) => {
 }
 
 /************************************************************** */
-
+/*
 module.exports.viewJob_get = async (req, res) => {
   try {
     const { id } = req.params
@@ -197,11 +197,28 @@ module.exports.viewJob_get = async (req, res) => {
     if (!data) {
       return res.status(404).json({ message: "Job not found" })
     }
-    res.render('viewjob', { id, data }) 
+    res.render('viewjob', { data }) 
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
-};
+}
+*/
+// debugger
+module.exports.viewJob_get = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log('Received ID:', id);
+    const data = await Job.findById(id);
+    console.log('Fetched Data:', data);
+    if (!data) {
+      return res.status(404).json({ message: "Job not found" });
+    }
+    res.render('viewjob', { data });
+  } catch (error) {
+    console.error('Error occurred:', error);
+    res.status(500).json({ message: error.message });
+  }
+}
 
 /************************************************************** */
 
