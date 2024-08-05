@@ -15,6 +15,8 @@ router.get('/dashboard', authController.dashboard_get)
 router.get('/createJob', authController.createJob_get)
 router.post('/createJob', authController.createJob_post)
 
+router.get('/viewjob/:id', authController.viewJob_get)
+
 router.get('/logout', authController.logout_get)
 
 module.exports = router
