@@ -223,6 +223,43 @@ module.exports.viewJob_get = async (req, res) => {
 
 /************************************************************** */
 
+// GET / 
+// Edit job 
+module.exports.editJob_get  = async (req, res) => {
+  try {
+      const data = await Job.findOne( { _id: req.params.id } )
+
+      res.render('editjob', { data })
+      
+  } catch (error) {
+      console.log(error)   
+  }
+}
+
+// PUT / 
+// Edit job  
+module.exports.editJob_post  = async (req, res) => {
+  try {
+      await Job.findByIdAndUpdate(req.params.id, { 
+        jobtitle : req.body.jobtitle, 
+        jobcompany : req.body.jobcompany, 
+        website : req.body.website, 
+        employersName : req.body.employersName, 
+        employersEmail : req.body.employersEmail, 
+        employersPhone : req.body.employersPhone, 
+        employersAddress : req.body.employersAddress, 
+        origin : req.body.origin, 
+        status : req.body.status, 
+        comments : req.body.comments
+      })
+      res.redirect(`/dashboard`)      
+  } catch (error) {
+      console.log(error)   
+  }
+}
+
+/************************************************************** */
+
 module.exports.logout_get = (req, res) => {
   res.cookie('jwt', '', { maxAge : 1 })
   res.redirect('/')
