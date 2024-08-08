@@ -3,7 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
-const { requireAuth, checkUser } = require('./middleware/authMiddleware')
+const { checkUser } = require('./middleware/authMiddleware')
 const cloudinary = require('cloudinary').v2;
 
 // Configuration
