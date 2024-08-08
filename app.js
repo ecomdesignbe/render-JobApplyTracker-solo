@@ -3,7 +3,7 @@ const path = require('path')
 const mongoose = require('mongoose')
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
-const { checkUser } = require('./middleware/authMiddleware')
+const { redirectIfLoggedIn , requireAuth, checkUser } = require('./middleware/authMiddleware')
 const cloudinary = require('cloudinary').v2;
 
 // Configuration
@@ -41,7 +41,7 @@ app.get('/viewjob')
 app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
-app.get('/register',  (req, res) => res.render('register'))
+app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
 
 
 app.use(authRoutes)
