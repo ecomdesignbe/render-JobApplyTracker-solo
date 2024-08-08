@@ -21,7 +21,10 @@ app.use(express.json())
 app.use(cookieParser())
 
 // view engine
-app.set('views', path.join(__dirname, 'views'))
+// Configuration du dossier des vues
+const viewsDir = path.join(__dirname, 'views');
+console.log('Chemin vers les vues:', viewsDir);
+app.set('views', viewsDir);
 app.set('view engine', 'ejs')
 
 
