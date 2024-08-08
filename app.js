@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
 const { redirectIfLoggedIn , requireAuth, checkUser } = require('./middleware/authMiddleware')
@@ -19,6 +20,8 @@ const app = express()
 app.use(express.static('public'))
 app.use(express.json())
 app.use(cookieParser())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 
 // view engine
 app.set('views', path.join(__dirname, 'views'))
