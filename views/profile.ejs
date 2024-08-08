@@ -56,6 +56,10 @@
                                 </div>
                             </div>
                         </div>
+                        <form action="/upload" method="post" enctype="multipart/form-data">
+                            <input type="file" name="image" accept="image/*">
+                            <button type="submit">Upload</button>
+                          </form>
                         <button type="button" class="btn btn-success">Download CV</button>
                         <button type="button" class="btn btn-secondary">Upload new CV</button>
                         <button type="button" class="btn btn-danger">Change password</button>
@@ -67,5 +71,6 @@
             
         </div>        
     </main>
+    <script
 
     <%- include('partials/footer') -%>

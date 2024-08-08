@@ -20,6 +20,7 @@ router.get('/viewjob/:id', authController.viewJob_get)
 
 router.get('/editjob/:id', authController.editJob_get)
 router.post('/editjob/:id', authController.editJob_post)
+router.get('/deletejob/:id', authController.deleteJob_delete)
 
 router.get('/logout', authController.logout_get)
 

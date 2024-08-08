@@ -189,7 +189,7 @@ module.exports.createJob_post = async (req, res) => {
 }
 
 /************************************************************** */
-// debugger
+// debugger 4 render
 module.exports.viewJob_get = async (req, res) => {
   try {
     const { id } = req.params;
@@ -257,6 +257,20 @@ module.exports.editJob_post  = async (req, res) => {
       console.log(error)   
   }
 }
+
+/************************************************************** */
+
+// DELETE / 
+// Delete Job   
+module.exports.deleteJob_delete = async (req, res) => {
+  try {
+    await Job.deleteOne( { _id: req.params.id } )
+    res.redirect('/dashboard')
+  } catch (error) {
+      console.log(error)
+  }
+}
+
 
 /************************************************************** */
 
