@@ -15,8 +15,8 @@ router.get('/dashboard', authController.dashboard_get)
 router.get('/createJob', authController.createJob_get)
 router.post('/createJob', authController.createJob_post)
 
-router.get('/viewjob', authController.viewJob_get)
 router.get('/viewjob/:id', authController.viewJob_get)
+router.get('/viewjob', authController.viewJob_get)
 
 router.get('/editjob/:id', authController.editJob_get)
 router.post('/editjob/:id', authController.editJob_post)
