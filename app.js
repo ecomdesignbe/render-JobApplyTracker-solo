@@ -21,8 +21,9 @@ app.use(express.json())
 app.use(cookieParser())
 
 // view engine
-app.set('view engine', 'ejs')
 app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
 
 
 // database connection
