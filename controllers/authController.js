@@ -1,6 +1,7 @@
 const User = require("../models/User")
 const Job = require("../models/Job")
 const jwt = require("jsonwebtoken")
+const path = require('path')
 
 /********** GESTION ERREUR ****************  */
 // handle errors
@@ -200,7 +201,7 @@ module.exports.viewJob_get = async (req, res) => {
       if (!data) {
         return res.status(404).json({ message: "Job not found" });
       }
-      return res.render('viewjob', { data });
+      return res.render('viewjob', { id, data });
     } else {
       // Handle default view or listing (if needed)
       const jobs = await Job.find(); // Example: Fetch all jobs
