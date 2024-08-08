@@ -136,39 +136,36 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.dashboard_get = async (req, res) => {
   try {
-    const { filterBy, filterValue, orderBy, order } = req.query
+    // Extract filter and sort parameters from query
+    const { filterBy, order } = req.query;
 
     // Build the filter and sort objects
-    let filter = {}
-    let sort = {}
+    let filter = {};
+    let sort = {};
 
     // Apply filtering
-    if (filterBy && filterValue) {
+    if (filterBy) {
         if (filterBy === 'status') {
-            filter = { status: filterValue }
-        } else if (filterBy === 'origin') {
-            filter = { origin: filterValue }
+            filter = { 'status': { $exists: true } }; // Adjust filter logic if needed
         } else if (filterBy === 'date') {
-            filter = {} // Handle date filtering if needed
+            filter = {}; // Add more specific filtering logic if needed
         }
     }
 
     // Apply sorting
-    if (orderBy) {
-        sort[orderBy] = order === 'asc' ? 1 : -1
-    } else {
-        sort.createdAt = -1 // Default sorting by creation date in descending order
+    if (order) {
+        sort = { createdAt: order === 'asc' ? 1 : -1 }; // Sort by creation date
     }
 
     // Fetch jobs from the database with filtering and sorting
-    const jobs = await Job.find(filter).sort(sort)
+    const jobs = await Job.find(filter).sort(sort);
 
     // Render the jobs on your page
-    res.render('dashboard', { data: jobs })
-    } catch (err) {
-        console.error(err)
-        res.status(500).send('Server Error')
-    }
+    res.render('dashboard', { data: jobs });
+} catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+}
 }
 
 /* SIMPLE REQUEST

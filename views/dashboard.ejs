@@ -27,7 +27,6 @@
                         <option value="date">Date</option>
                     </select>
                 </div>
-                
                 <div class="col-2">
                     <label for="orderSelect">Order</label>
                     <select class="form-select" id="orderSelect">
@@ -85,9 +84,9 @@
             const order = orderSelect.value
 
             // Build query string
-            let query = '?'
+            let query = '?';
             if (filterBy) query += `filterBy=${filterBy}&`
-            if (order) query += `order=${order}&`;
+            if (order) query += `order=${order}&`
 
             // Redirect to the updated URL
             window.location.href = `/dashboard${query}`
