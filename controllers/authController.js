@@ -236,28 +236,28 @@ module.exports.editJob_get  = async (req, res) => {
   }
 }
 
-// PUT / 
+// POST / 
 // Edit job  
-module.exports.editJob_post  = async (req, res) => {
+module.exports.editJob_post = async (req, res) => {
   try {
       await Job.findByIdAndUpdate(req.params.id, { 
-        jobtitle : req.body.jobtitle, 
-        jobcompany : req.body.jobcompany, 
-        website : req.body.website, 
-        employersName : req.body.employersName, 
-        employersEmail : req.body.employersEmail, 
-        employersPhone : req.body.employersPhone, 
-        employersAddress : req.body.employersAddress, 
-        origin : req.body.origin, 
-        status : req.body.status, 
-        comments : req.body.comments
-      })
-      res.redirect(`/dashboard`)      
+          jobtitle: req.body.jobtitle, 
+          jobcompany: req.body.jobcompany, 
+          website: req.body.website, 
+          employersName: req.body.employersName, 
+          employersEmail: req.body.employersEmail, 
+          employersPhone: req.body.employersPhone, 
+          employersAddress: req.body.employersAddress, 
+          origin: req.body.origin, 
+          status: req.body.status, 
+          comments: req.body.comments
+      });
+      res.json({ success: true })
   } catch (error) {
-      console.log(error)   
+      console.log(error)
+      res.status(500).json({ errors: { general: 'An error occurred' } })
   }
 }
-
 /************************************************************** */
 
 // DELETE / 

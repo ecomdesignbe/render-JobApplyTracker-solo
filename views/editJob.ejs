@@ -70,9 +70,9 @@
                         
                     </div>
                     <div class="col mb-3">
-                        <select class="form-select" multiple aria-label="origin" id="origin" required>
-                            <option value="Candidature spontanée">Candidature spontanée</option>
-                            <option value="Job offer.">Job offer.</option>                            
+                        <select class="form-select" multiple aria-label="origin" id="origin" name="origin[]" required>
+                            <option value="Candidature spontanée" <%= data.origin.includes("Candidature spontanée") ? "selected" : "" %>>Candidature spontanée</option>
+                            <option value="Job offer." <%= data.origin.includes("Job offer.") ? "selected" : "" %>>Job offer.</option>                                         
                         </select>
                     </div>
                     <div class="origin error"></div>
@@ -85,11 +85,11 @@
                         
                     </div>
                     <div class="col mb-3">
-                        <select class="form-select" multiple aria-label="status" id="status" required>
-                            <option value="Interested">Interested</option>
-                            <option value="CV sent">CV sent</option>                            
-                            <option value="Negative">Negative</option>                            
-                            <option value="Interview">Interview</option>                            
+                        <select class="form-select" multiple aria-label="status" id="status" name="status[]" required>
+                            <option value="Interested" <%= data.status.includes("Interested") ? "selected" : "" %>>Interested</option>
+                        <option value="CV sent" <%= data.status.includes("CV sent") ? "selected" : "" %>>CV sent</option>                            
+                        <option value="Negative" <%= data.status.includes("Negative") ? "selected" : "" %>>Negative</option>                            
+                        <option value="Interview" <%= data.status.includes("Interview") ? "selected" : "" %>>Interview</option>                                
                         </select>
                     </div>
                     <div class="status error"></div>
@@ -108,30 +108,29 @@
     </main>
 
     <script>
-        const form = document.querySelector('form')
-
+        const form = document.querySelector('form');
+    
         const jobtitleError = document.querySelector('.jobtitle.error')
         const jobcompanyError = document.querySelector('.jobcompany.error')
         const websiteError = document.querySelector('.website.error')
         const employersNameError = document.querySelector('.employersName.error')
         const employersEmailError = document.querySelector('.employersEmail.error')
-
         const originError = document.querySelector('.origin.error')
         const statusError = document.querySelector('.status.error')
-
+    
         form.addEventListener('submit', async (e) => {
-            e.preventDefault()
-
-            // reset errors
+            e.preventDefault();
+    
+            // Reset errors
             jobtitleError.textContent = ''
             jobcompanyError.textContent = ''
-            websiteError.textContent =  ''
-            employersNameError.textContent =  ''
-            employersEmailError.textContent =  ''
-            originError.textContent =  ''
-            statusError.textContent =  ''
-
-            // get the values
+            websiteError.textContent = ''
+            employersNameError.textContent = ''
+            employersEmailError.textContent = ''
+            originError.textContent = ''
+            statusError.textContent = ''
+    
+            // Get the values
             const jobtitle = form.jobtitle.value
             const jobcompany = form.jobcompany.value
             const website = form.website.value
@@ -139,10 +138,10 @@
             const employersEmail = form.employersEmail.value
             const employersPhone = form.employersPhone.value
             const employersAddress = form.employersAddress.value
-            const origin = Array.from(form.origin.selectedOptions).map(option => option.value);
-            const status = Array.from(form.status.selectedOptions).map(option => option.value);
+            const origin = Array.from(form.origin.selectedOptions).map(option => option.value)
+            const status = Array.from(form.status.selectedOptions).map(option => option.value)
             const comments = form.comments.value
-
+    
             try {
                 const res = await fetch(`/editJob/<%= data._id %>`, {
                     method: 'POST',
@@ -159,10 +158,11 @@
                         comments 
                     }),
                     headers: { 'Content-type': 'application/json' }
-                })
-
+                });
+    
                 const data = await res.json()
-                console.log(data)
+                console.log(data);
+    
                 if (data.errors) {
                     jobtitleError.textContent = data.errors.jobtitle || ''
                     jobcompanyError.textContent = data.errors.jobcompany || ''
@@ -172,14 +172,16 @@
                     originError.textContent = data.errors.origin || ''
                     statusError.textContent = data.errors.status || ''
                 }
-                if(data.job) {
+    
+                if (data.success) {
+                    alert('Job updated successfully!');
+                    
                     location.assign('/dashboard')
                 }
-                
+    
             } catch (err) {
-                console.log(err)
+                console.log(err);
             }
-        })
+        });
     </script>
-
     <%- include('partials/footer') -%>
