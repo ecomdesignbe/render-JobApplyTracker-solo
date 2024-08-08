@@ -136,6 +136,41 @@ module.exports.login_post = async (req, res) => {
 
 module.exports.dashboard_get = async (req, res) => {
   try {
+    // Extract filter and sort parameters from query
+    const { filterBy, order } = req.query;
+
+    // Build the filter and sort objects
+    let filter = {};
+    let sort = {};
+
+    // Apply filtering
+    if (filterBy) {
+        if (filterBy === 'status') {
+            filter = { 'status': { $exists: true } }; // Adjust filter logic if needed
+        } else if (filterBy === 'date') {
+            filter = {}; // Add more specific filtering logic if needed
+        }
+    }
+
+    // Apply sorting
+    if (order) {
+        sort = { createdAt: order === 'asc' ? 1 : -1 }; // Sort by creation date
+    }
+
+    // Fetch jobs from the database with filtering and sorting
+    const jobs = await Job.find(filter).sort(sort);
+
+    // Render the jobs on your page
+    res.render('dashboard', { data: jobs });
+} catch (err) {
+    console.error(err);
+    res.status(500).send('Server Error');
+}
+}
+
+/* SIMPLE REQUEST
+module.exports.dashboard_get = async (req, res) => {
+  try {
     const data = await Job.find({})
     res.render('dashboard', { data }) 
   } catch (error) {
@@ -143,6 +178,7 @@ module.exports.dashboard_get = async (req, res) => {
     res.status(500).send("An error occurred") 
   }
 }
+*/
 
 /************************************************************** */
 

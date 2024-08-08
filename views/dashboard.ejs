@@ -70,6 +70,28 @@
                 button.classList.add('btn-success')
             }
         })
+
+        document.addEventListener('DOMContentLoaded', function () {
+        const filterSelect = document.getElementById('filterBySelect')
+        const orderSelect = document.getElementById('orderSelect')
+
+        // Listen for changes on the filter or order selects
+        filterSelect.addEventListener('change', updateJobs)
+        orderSelect.addEventListener('change', updateJobs)
+
+        function updateJobs() {
+            const filterBy = filterSelect.value
+            const order = orderSelect.value
+
+            // Build query string
+            let query = '?'
+            if (filterBy) query += `filterBy=${filterBy}&`
+            if (order) query += `order=${order}&`;
+
+            // Redirect to the updated URL
+            window.location.href = `/dashboard${query}`
+        }
+    })
         
     </script>
     
