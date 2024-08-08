@@ -20,19 +20,19 @@
             </div> 
             <div class="row hidden-md-up mb-4 mt-4">
                 <div class="col-2">
-                    <label for="inlineFormSelectPref">Filter by :</label>
-                    <select class="form-select" id="inlineFormSelectPref">
-                        <option selected>Choose...</option>
-                        <option value="1">Status</option>
-                        <option value="2">Date</option>
+                    <label for="filterBySelect">Filter by :</label>
+                    <select class="form-select" id="filterBySelect">
+                        <option value="" selected>Choose...</option>
+                        <option value="status">Status</option>
+                        <option value="date">Date</option>
                     </select>
                 </div>
                 <div class="col-2">
-                    <label for="inlineFormSelectPref">Order</label>
-                    <select class="form-select" id="inlineFormSelectPref">
-                        <option selected>Choose...</option>
-                        <option value="1">Asc</option>
-                        <option value="2">Desc.</option>
+                    <label for="orderSelect">Order</label>
+                    <select class="form-select" id="orderSelect">
+                        <option value="" selected>Choose...</option>
+                        <option value="asc">Asc</option>
+                        <option value="desc">Desc.</option>
                     </select>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <div class="card-block">
                             <h4 class="card-title"> <%= job.jobtitle %></h4>
                             <h6 class="card-text p-y-1 mb-4"><%= job.jobcompany %></h6>
-                            <a class="btn btn-dark mb-2" href="/viewjob/<%= job._id %>" role="button">See More</a>
+                            <a class="btn btn-dark mb-2" href="/viewjob/<%= job._id %>" role="button">More</a>
                             <button type="button" class="btn  mb-2" id="button" value="<%= job.status %>"><%= job.status %></button>
                             <a href="/deletejob/<%= job.id %>" class="btn btn-danger mb-2" role="button">Delete Job</a>
                         </div>
@@ -70,6 +70,7 @@
                 button.classList.add('btn-success')
             }
         })
+        
     </script>
     
     <%- include('partials/footer') -%>

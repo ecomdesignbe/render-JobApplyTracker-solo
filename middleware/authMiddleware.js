@@ -36,6 +36,7 @@ const checkUser = (req, res, next) => {
                 console.log(decodedToken)
                 let user = await User.findById(decodedToken.id)
                 res.locals.user = user
+                
                 next()
             }
         })
@@ -46,4 +47,14 @@ const checkUser = (req, res, next) => {
     }
 }
 
-module.exports = { requireAuth, checkUser }
+// Middleware to redirect logged-in users away from login/signup pages
+const redirectIfLoggedIn = (req, res, next) => {
+    if (res.locals.user) {
+        // Assuming you want to redirect to the dashboard if logged in
+        res.redirect('/dashboard')
+    } else {
+        next()
+    }
+}
+
+module.exports = { requireAuth, checkUser, redirectIfLoggedIn }

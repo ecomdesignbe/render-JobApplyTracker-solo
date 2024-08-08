@@ -1,7 +1,6 @@
 const User = require("../models/User")
 const Job = require("../models/Job")
 const jwt = require("jsonwebtoken")
-const path = require('path')
 
 /********** GESTION ERREUR ****************  */
 // handle errors
@@ -194,24 +193,18 @@ module.exports.createJob_post = async (req, res) => {
 module.exports.viewJob_get = async (req, res) => {
   try {
     const { id } = req.params;
-    
-    if (id) {
-      // Handle view job by ID
-      const data = await Job.findById(id);
-      if (!data) {
-        return res.status(404).json({ message: "Job not found" });
-      }
-      return res.render('viewjob', { id, data });
-    } else {
-      // Handle default view or listing (if needed)
-      const jobs = await Job.find(); // Example: Fetch all jobs
-      return res.render('viewjob', { jobs });
+    console.log('Received ID:', id);
+    const data = await Job.findById(id)
+    console.log('Fetched Data:', data)
+    if (!data) {
+      return res.status(404).json({ message: "Job not found" })
     }
+    res.render('viewjob', { data })
   } catch (error) {
-    console.error('Error occurred:', error);
-    res.status(500).json({ message: error.message });
+    console.error('Error occurred:', error)
+    res.status(500).json({ message: error.message })
   }
-};
+}
 
 /*
 module.exports.viewJob_get = async (req, res) => {
