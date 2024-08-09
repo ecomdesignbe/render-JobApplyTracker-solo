@@ -120,7 +120,7 @@
             const cvDocuments = document.getElementById('cvDocuments').files[0]
             
             if (!profilePicture || !cvDocuments) {
-                alert('Both files must be selected!')
+                alert('Both files must be selected! and filename without spaces plz')
                 event.preventDefault(); // Stop form submission
                 return
             }
