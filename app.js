@@ -4,14 +4,8 @@ const mongoose = require('mongoose')
 const authRoutes = require('./routes/authRoutes')
 const cookieParser = require('cookie-parser')
 const { redirectIfLoggedIn , requireAuth, checkUser } = require('./middleware/authMiddleware')
-const cloudinary = require('cloudinary').v2;
-
-// Configuration
-cloudinary.config({ 
-  cloud_name: 'drj6sssth', 
-  api_key: '738122518196474', 
-  api_secret: 'uceDgaz6XMBSZys8l9Tm0Yblges' // Click 'View Credentials' below to copy your API secret
-});
+const fileUpload = require('express-fileupload')
+const FTPClient = require('ftp')
 
 const app = express()
 
@@ -20,12 +14,12 @@ app.use(express.static('public'))
 app.use(express.json())
 app.use(cookieParser())
 
+// Express middleware to parse file uploads
+app.use(fileUpload());
+
 // view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-
-
-
 
 // database connection
 const dbURI = 'mongodb+srv://steve:nNhmx00iuu0mBqlA@cluster0.rkjriez.mongodb.net/jobapplytracker?retryWrites=true&w=majority&appName=Cluster0'
@@ -43,6 +37,8 @@ app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
 app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
+
+
 
 
 app.use(authRoutes)

@@ -74,57 +74,45 @@
 
         form.addEventListener('submit', async (e) => {
             e.preventDefault()
-            
-            // reset errors
+
+            // Reset errors
             firstnameError.textContent = ''
-            lastnameError.textContent =  ''
-            emailError.textContent =  ''
-            passwordError.textContent =  ''
+            lastnameError.textContent = ''
+            emailError.textContent = ''
+            passwordError.textContent = ''
             repeatPasswordError.textContent = ''
 
-            // get the values
-            const firstname = form.firstname.value
-            const lastname = form.lastname.value
-            const email = form.email.value
-            const github = form.github.value
-            const profilePicture = form.profilePicture.value
-            const cvDocuments = form.cvDocuments.value
-            const password = form.password.value
-            const repeatPassword = form.repeatPassword.value
+            // Get the values
+            const formData = new FormData(form)
 
-            if(repeatPassword == '' ) {
-                repeatPasswordError.innerHTML = 'Please retype your password'
-            }
-
-            
-            if(password != repeatPassword) {
-                repeatPasswordError.innerHTML = 'Different password'
+            if (formData.get('password') !== formData.get('repeatPassword')) {
+                repeatPasswordError.innerHTML = 'Passwords do not match'
+                return
             }
 
             try {
                 const res = await fetch('/register', {
                     method: 'POST',
-                    body : JSON.stringify({ firstname, lastname, email, github, profilePicture, cvDocuments, password }),
-                    headers : { 'Content-type' : 'application/json'}
+                    body: formData
                 })
 
                 const data = await res.json()
                 console.log(data)
+
                 if (data.errors) {
-                    firstnameError.textContent = data.errors.firstname
-                    lastnameError.textContent = data.errors.lastname
-                    emailError.textContent = data.errors.email
-                    passwordError.textContent = data.errors.password
+                    firstnameError.textContent = data.errors.firstname;
+                    lastnameError.textContent = data.errors.lastname;
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
                 }
-                if(data.user) {
+
+                if (data.user) {
                     location.assign('/profile')
                 }
-                
-            } catch (err) {
-                console.log(err)
 
+            } catch (err) {
+                console.log('Error:', err)
             }
-            
         })
     </script>
 

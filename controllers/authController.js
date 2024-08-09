@@ -1,6 +1,27 @@
 const User = require("../models/User")
 const Job = require("../models/Job")
 const jwt = require("jsonwebtoken")
+const FTPClient = require('ftp');
+const fileUpload = require('express-fileupload');
+
+// FTP client configuration
+const ftpClient = new FTPClient();
+
+const ftpConfig = {
+    host: 'ftp.cluster010.hosting.ovh.net',  // replace with your FTP host
+    user: 'ecomdesi', // replace with your FTP username
+    password: 'SQLadmin303' // replace with your FTP password
+};
+
+// Connect to the FTP server
+function connectFTP() {
+  return new Promise((resolve, reject) => {
+      ftpClient.on('ready', resolve);
+      ftpClient.on('error', reject);
+      ftpClient.connect(ftpConfig);
+  });
+}
+
 
 /********** GESTION ERREUR ****************  */
 // handle errors
@@ -81,36 +102,61 @@ module.exports.register_get = (req, res) => {
 }
 
 module.exports.register_post = async (req, res) => {
-  const { 
+  const {
     firstname,
     lastname,
-    email, 
-    github, 
-    profilePicture, 
-    cvDocuments, 
-    password 
-  } = req.body
-  
-  try {
-    const user = await User.create({ 
-      firstname,
-      lastname,
-      email, 
-      github, 
-      profilePicture, 
-      cvDocuments, 
-      password })
+    email,
+    github,
+    password
+} = req.body;
 
-      const token = createToken(user._id)
-      res.cookie('jwt', token, { httpOnly : true, maxAge: maxAge * 1000 })
+try {
+    // Validate uploaded files
+    if (!req.files || !req.files.profilePicture || !req.files.cvDocuments) {
+        return res.status(400).json({ errors: { message: 'Files are missing' } });
+    }
 
-      res.status(201).json({ user : user._id })
-    
-  } catch (err) {
-    const errors = handleErrors(err)
-    res.status(400).json({errors})
-    
-  }
+    const profilePicture = req.files.profilePicture;
+    const cvDocuments = req.files.cvDocuments;
+
+    // Connect to the FTP server
+    await connectFTP();
+
+    // Upload files to FTP
+    ftpClient.put(profilePicture.data, `/uploads/${profilePicture.name}`, err => {
+        if (err) throw err;
+        console.log(`Profile picture uploaded: ${profilePicture.name}`);
+    });
+
+    ftpClient.put(cvDocuments.data, `/uploads/${cvDocuments.name}`, err => {
+        if (err) throw err;
+        console.log(`CV uploaded: ${cvDocuments.name}`);
+    });
+
+    // Disconnect from FTP
+    ftpClient.end();
+
+    // Create a new user
+    const user = await User.create({
+        firstname,
+        lastname,
+        email,
+        github,
+        profilePicture: profilePicture.name, // Store file name in the database
+        cvDocuments: cvDocuments.name, // Store file name in the database
+        password
+    });
+
+    // Create JWT token
+    const token = createToken(user._id);
+    res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+
+    res.status(201).json({ user: user._id });
+
+} catch (err) {
+    const errors = handleErrors(err);
+    res.status(400).json({ errors });
+}
 }
 
 module.exports.login_get = (req, res) => {
@@ -254,7 +300,7 @@ module.exports.viewJob_get = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
-};
+}
 */
 
 /************************************************************** */
