@@ -10,7 +10,7 @@ const FTPClient = require('ftp')
 const app = express()
 
 // middleware
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static('public'))
 app.use(express.json())
 app.use(cookieParser())
 
@@ -32,7 +32,7 @@ mongoose.connect(dbURI)
 app.get('*', checkUser)
 app.get('/', (req, res) => res.render('login'))
 app.get('/profile', (req, res) => res.render('profile'))
-app.get('/viewjob', (req, res) => res.render('viewjob'))
+app.get('/viewjob/:id')
 app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
