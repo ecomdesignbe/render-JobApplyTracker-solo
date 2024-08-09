@@ -112,7 +112,7 @@ module.exports.register_post = async (req, res) => {
 
 try {
     // Validate uploaded files
-    if (!req.files || !req.files.profilePicture || !req.files.cvDocuments) {
+    if (!req.files || !req.files.profilePicture || !req.files.cvDocuments) {       
         return res.status(400).json({ errors: { message: 'Files are missing' } });
     }
 

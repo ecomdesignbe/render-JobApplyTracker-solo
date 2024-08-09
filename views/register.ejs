@@ -116,6 +116,15 @@
                 location.assign('/profile');
             }
 
+            const profilePicture = document.getElementById('profilePicture').files[0]
+            const cvDocuments = document.getElementById('cvDocuments').files[0]
+            
+            if (!profilePicture || !cvDocuments) {
+                alert('Both files must be selected!')
+                event.preventDefault(); // Stop form submission
+                return
+            }
+
         } catch (err) {
             console.log('Error:', err);
         }
