@@ -123,12 +123,12 @@ try {
     await connectFTP();
 
     // Upload files to FTP
-    ftpClient.put(profilePicture.data, `/uploads/${profilePicture.name}`, err => {
+    ftpClient.put(profilePicture.data, `dev/uploads/${profilePicture.name}`, err => {
         if (err) throw err;
         console.log(`Profile picture uploaded: ${profilePicture.name}`);
     });
 
-    ftpClient.put(cvDocuments.data, `/uploads/${cvDocuments.name}`, err => {
+    ftpClient.put(cvDocuments.data, `dev/uploads/${cvDocuments.name}`, err => {
         if (err) throw err;
         console.log(`CV uploaded: ${cvDocuments.name}`);
     });
