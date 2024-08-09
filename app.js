@@ -21,17 +21,10 @@ app.use(express.json())
 app.use(cookieParser())
 
 // view engine
-// app.set("views",  path.join(__dirname, "views"))
-// app.set('views', __dirname)
-// app.set('views', `${__dirname}/views`);
-//app.set("view engine", "ejs")
-
-app.set('views', path.join(__dirname, 'views'));
+// app.set("view engine", "ejs")
+app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs');
 
-app.get('/viewjob', (req, res) => {
-    res.render('viewjob');
-})
 
 
 
