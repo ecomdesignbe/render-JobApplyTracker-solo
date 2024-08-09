@@ -10,11 +10,7 @@ const FTPClient = require('ftp')
 const app = express()
 
 // middleware
-app.set("view engine", "ejs");
-app.engine("html", require("ejs").renderFile);
-app.use(express.static(path.join(__dirname, "public")));
-
-// app.use(express.static('public'))
+app.use(express.static('public'))
 app.use(express.json())
 app.use(cookieParser())
 
@@ -22,8 +18,8 @@ app.use(cookieParser())
 app.use(fileUpload());
 
 // view engine
-//app.set('view engine', 'ejs');
-//app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'))
 
 // database connection
 const dbURI = 'mongodb+srv://steve:nNhmx00iuu0mBqlA@cluster0.rkjriez.mongodb.net/jobapplytracker?retryWrites=true&w=majority&appName=Cluster0'
@@ -36,8 +32,7 @@ mongoose.connect(dbURI)
 app.get('*', checkUser)
 app.get('/', (req, res) => res.render('login'))
 app.get('/profile', (req, res) => res.render('profile'))
-app.get('/viewjob/:id')
-app.get('/editjob',  requireAuth)
+app.get('/viewjob', (req, res) => res.render('viewjob'))
 app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
