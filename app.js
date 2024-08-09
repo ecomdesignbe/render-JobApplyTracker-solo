@@ -37,7 +37,8 @@ app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
 app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
-app.get('/viewjob/:id', (req, res) => {
+app.get('/viewjob/:id', async (req, res) => {
+  const data = await Job.findById(id)
   res.render('viewjob', { data });
 });
 
