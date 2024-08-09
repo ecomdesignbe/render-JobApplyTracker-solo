@@ -281,7 +281,7 @@ module.exports.viewJob_get = async (req, res) => {
     if (!data) {
       return res.status(404).json({ message: "Job not found" })
     }
-    res.render('viewjob', { data })
+    res.render('viewJob', { data })
   } catch (error) {
     console.error('Error occurred:', error)
     res.status(500).json({ message: error.message })
