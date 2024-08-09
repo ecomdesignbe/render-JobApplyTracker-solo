@@ -311,7 +311,7 @@ module.exports.editJob_get  = async (req, res) => {
   try {
       const data = await Job.findOne( { _id: req.params.id } )
 
-      res.render('editjob', { data })
+      res.render('editJob', { data })
       
   } catch (error) {
       console.log(error)   
