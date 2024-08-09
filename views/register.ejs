@@ -1,119 +1,125 @@
 <%- include('partials/header') -%>
-    
-    <main>
-        <div class="container">
-            <div class="mt-3 mb-3 text-center">
-                <h2>Register</h2>
-            </div>            
-            <form action="/register" novalidate enctype="multipart/form-data">
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="firstname" class="form-label">First name</label>                        
-                        <input type="text" name="firstname" class="form-control" aria-label="First name" required>
-                        <div class="firstname error"></div>
-                    </div>
-                    <div class="col mb-3">
-                        <label for="lastname" class="form-label">Last name</label>
-                        <input type="text" class="form-control" name="lastname" aria-label="Last name" required>
-                        <div class="lastname error"></div>
-                    </div>
-                </div>               
 
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
-                    <div class="email error"></div>
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+<main>
+    <div class="container">
+        <div class="mt-3 mb-3 text-center">
+            <h2>Register</h2>
+        </div>
+        <form action="/register" novalidate enctype="multipart/form-data">
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="firstname" class="form-label">First name</label>
+                    <input type="text" name="firstname" class="form-control" aria-label="First name" required>
+                    <div class="firstname error"></div>
                 </div>
-
-                <div class="mb-3">
-                    <label for="github" class="form-label">Github</label>
-                    <input type="text" name="github" class="form-control" placeholder="ex: https://github.com/user" aria-label="Github">
+                <div class="col mb-3">
+                    <label for="lastname" class="form-label">Last name</label>
+                    <input type="text" class="form-control" name="lastname" aria-label="Last name" required>
+                    <div class="lastname error"></div>
                 </div>
-            
-                <div class="row">
-                    <div class="col mb-3">
-                        <label for="profilePicture" class="form-label">Profile picture</label>
-                        <input class="form-control" name="profilePicture" type="file" id="profilePicture">                        
-                    </div>
-                    <div class="col mb-3">
-                        <label for="cvDocuments" class="form-label">CV (pdf)</label>
-                        <input class="form-control" type="file" name="cvDocuments" id="cvDocuments">
-                    </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required>
+                <div class="email error"></div>
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="github" class="form-label">Github</label>
+                <input type="text" name="github" class="form-control" placeholder="ex: https://github.com/user" aria-label="Github">
+            </div>
+
+            <div class="row">
+                <div class="col mb-3">
+                    <label for="profilePicture" class="form-label">Profile picture</label>
+                    <input class="form-control" name="profilePicture" type="file" id="profilePicture">
+                    <div class="profilePicture error"></div>
                 </div>
-           
-                <div class="mb-3">
-                    <label for="password" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                    <div class="password error"></div>
+                <div class="col mb-3">
+                    <label for="cvDocuments" class="form-label">CV (pdf)</label>
+                    <input class="form-control" type="file" name="cvDocuments" id="cvDocuments">
+                    <div class="cvDocuments error"></div>
                 </div>
-                
+            </div>
 
-                <div class="mb-3">
-                    <label for="repeatPassword" class="form-label">Repeat password</label>
-                    <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" required>
-                    <div class="repeatPassword error"></div>
-                </div>
-                <button type="submit" class="btn btn-danger">Register</button>
-            </form>
-            <div class="mt-3 mb-3 text-center">
-                <p>Are you already registered? <a href="/login">Please log in</a></p>
-            </div> 
-        </div>        
-    </main>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="password error"></div>
+            </div>
 
-    <script>
-        const form = document.querySelector('form')
+            <div class="mb-3">
+                <label for="repeatPassword" class="form-label">Repeat password</label>
+                <input type="password" class="form-control" id="repeatPassword" name="repeatPassword" required>
+                <div class="repeatPassword error"></div>
+            </div>
+            <button type="submit" class="btn btn-danger">Register</button>
+        </form>
+        <div class="mt-3 mb-3 text-center">
+            <p>Are you already registered? <a href="/login">Please log in</a></p>
+        </div>
+    </div>
+</main>
 
-        const firstnameError = document.querySelector('.firstname.error')
-        const lastnameError = document.querySelector('.lastname.error')
-        const emailError = document.querySelector('.email.error')
-        const passwordError = document.querySelector('.password.error')
+<script>
+    const form = document.querySelector('form');
 
-        const repeatPasswordError = document.querySelector('.repeatPassword.error')
+    const firstnameError = document.querySelector('.firstname.error');
+    const lastnameError = document.querySelector('.lastname.error');
+    const emailError = document.querySelector('.email.error');
+    const passwordError = document.querySelector('.password.error');
+    const profilePictureError = document.querySelector('.profilePicture.error');
+    const cvDocumentsError = document.querySelector('.cvDocuments.error');
+    const repeatPasswordError = document.querySelector('.repeatPassword.error');
 
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault()
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-            // Reset errors
-            firstnameError.textContent = ''
-            lastnameError.textContent = ''
-            emailError.textContent = ''
-            passwordError.textContent = ''
-            repeatPasswordError.textContent = ''
+        // Reset errors
+        firstnameError.textContent = '';
+        lastnameError.textContent = '';
+        emailError.textContent = '';
+        passwordError.textContent = '';
+        repeatPasswordError.textContent = '';
+        cvDocumentsError.textContent = '';
+        profilePictureError.textContent = '';
 
-            // Get the values
-            const formData = new FormData(form)
+        // Get the values
+        const formData = new FormData(form);
 
-            if (formData.get('password') !== formData.get('repeatPassword')) {
-                repeatPasswordError.innerHTML = 'Passwords do not match'
-                return
+        if (formData.get('password') !== formData.get('repeatPassword')) {
+            repeatPasswordError.innerHTML = 'Passwords do not match';
+            return;
+        }
+
+        try {
+            const res = await fetch('/register', {
+                method: 'POST',
+                body: formData
+            });
+
+            const data = await res.json();
+            console.log(data);
+
+            if (data.errors) {
+                firstnameError.textContent = data.errors.firstname || '';
+                lastnameError.textContent = data.errors.lastname || '';
+                emailError.textContent = data.errors.email || '';
+                passwordError.textContent = data.errors.password || '';
+                profilePictureError.textContent = data.errors.profilePicture || '';
+                cvDocumentsError.textContent = data.errors.cvDocuments || '';
             }
 
-            try {
-                const res = await fetch('/register', {
-                    method: 'POST',
-                    body: formData
-                })
-
-                const data = await res.json()
-                console.log(data)
-
-                if (data.errors) {
-                    firstnameError.textContent = data.errors.firstname;
-                    lastnameError.textContent = data.errors.lastname;
-                    emailError.textContent = data.errors.email;
-                    passwordError.textContent = data.errors.password;
-                }
-
-                if (data.user) {
-                    location.assign('/profile')
-                }
-
-            } catch (err) {
-                console.log('Error:', err)
+            if (data.user) {
+                location.assign('/profile');
             }
-        })
-    </script>
 
-    <%- include('partials/footer') -%>
+        } catch (err) {
+            console.log('Error:', err);
+        }
+    });
+</script>
+
+<%- include('partials/footer') -%>
