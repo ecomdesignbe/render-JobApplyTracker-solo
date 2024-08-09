@@ -18,8 +18,12 @@ app.use(cookieParser())
 app.use(fileUpload());
 
 // view engine
+
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+
+//app.set('view engine', 'ejs');
+//app.set('views', path.join(__dirname, 'views'))
 
 // database connection
 const dbURI = 'mongodb+srv://steve:nNhmx00iuu0mBqlA@cluster0.rkjriez.mongodb.net/jobapplytracker?retryWrites=true&w=majority&appName=Cluster0'
@@ -37,9 +41,6 @@ app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
 app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
-
-
-
 
 app.use(authRoutes)
 

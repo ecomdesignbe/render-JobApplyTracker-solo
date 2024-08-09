@@ -17,7 +17,6 @@ router.get('/createJob', requireAuth, authController.createJob_get)
 router.post('/createJob', requireAuth, authController.createJob_post)
 
 router.get('/viewjob/:id', requireAuth, authController.viewJob_get)
-router.get('/viewjob', requireAuth, authController.viewJob_get)
 
 router.get('/editjob/:id', requireAuth, authController.editJob_get)
 router.post('/editjob/:id', requireAuth, authController.editJob_post)
