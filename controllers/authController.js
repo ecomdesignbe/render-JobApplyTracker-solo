@@ -276,19 +276,18 @@ module.exports.viewJob_get = async (req, res) => {
   try {
     const { id } = req.params;
     console.log('Received ID:', id);
-    const data = await Job.findById(id);
-    console.log('Fetched Data:', data);
-    
+    const data = await Job.findById(id)
+    console.log('Fetched Data:', data)
     if (!data) {
-      return res.status(404).json({ message: "Job not found" });
+      return res.status(404).json({ message: "Job not found" })
     }
-
-    res.render('viewjob', { data });
+    res.render('viewjob', { data })
   } catch (error) {
-    console.error('Error occurred:', error);
-    res.status(500).json({ message: error.message });
+    console.error('Error occurred:', error)
+    res.status(500).json({ message: error.message })
   }
-};
+}
+
 /*
 module.exports.viewJob_get = async (req, res) => {
   try {

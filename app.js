@@ -7,6 +7,9 @@ const { redirectIfLoggedIn , requireAuth, checkUser } = require('./middleware/au
 const fileUpload = require('express-fileupload')
 const FTPClient = require('ftp')
 
+const authController = require('./controllers/authController');
+
+
 const app = express()
 
 // middleware
@@ -41,6 +44,7 @@ app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
 app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
+app.get('/viewjob/:id', requireAuth, authController.viewJob_get);
 
 app.use(authRoutes)
 
