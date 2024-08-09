@@ -44,7 +44,7 @@ app.get('/editjob/:id')
 app.get('/delitejob/:id')
 app.get('/dashboard')
 app.get('/register', redirectIfLoggedIn, (req, res) => res.render('register'))
-app.get('/viewJob/:id', requireAuth, authController.viewJob_get);
+app.get('/viewjob/:id', requireAuth, authController.viewJob_get);
 
 app.use(authRoutes)
 
