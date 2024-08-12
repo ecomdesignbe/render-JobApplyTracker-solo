@@ -8,9 +8,9 @@ const fileUpload = require('express-fileupload');
 const ftpClient = new FTPClient();
 
 const ftpConfig = {
-    host: 'ftp.cluster010.hosting.ovh.net',  // replace with your FTP host
-    user: 'ecomdesi', // replace with your FTP username
-    password: 'SQLadmin303' // replace with your FTP password
+    host: '',  // replace with your FTP host
+    user: '', // replace with your FTP username
+    password: '' // replace with your FTP password
 };
 
 // Connect to the FTP server
